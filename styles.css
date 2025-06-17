@@ -1,0 +1,196 @@
+html, body {
+    margin: 0; padding: 0; height: 100%; width: 100%;
+    overflow: hidden;
+    background: rgba(168, 168, 168, 0.5);
+    font-family: sans-serif;
+  }
+  #header-title {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+background: rgba(255, 255, 255, 0.9);
+padding: 10px 20px;
+box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+font-family: sans-serif;
+font-size: 18px;
+color: #333;
+z-index: 50; /* inférieur à #legende */
+user-select: none;
+white-space: nowrap;
+font-weight: 600;
+}
+  #legende {
+    position: absolute;
+    top: 0; left: 0;
+    width: 440px;
+    z-index: 100;
+    background: rgba(0,0,0,0.5);
+    pointer-events: none;
+  }
+  #legende img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  #container {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    cursor: grab;
+    user-select: none;
+    touch-action: none; /* Désactive le scroll par défaut sur mobile */
+  }
+  .image-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    transform: scale(1.6);
+    transform-origin: center;
+  }
+  
+  .image-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    user-select: none;
+    pointer-events: none;
+  }
+  
+  #transparency-container {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 20px;
+    border-radius: 12px;
+    user-select: none;
+  }
+  #transparency-slider {
+    width: 300px;
+    accent-color: orange;
+  }
+  .transparency-label {
+    font-size: 16px;
+    color: #333;
+    white-space: nowrap;
+  }
+  .transparency-label.left {
+    text-align: right;
+  }
+  .transparency-label.right {
+    text-align: left;
+  }
+  .menu-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap; /* permet le retour à la ligne */
+    justify-content: flex-start;
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    z-index: 400;
+  }
+  
+  .menu-container a {
+    text-decoration: none;
+    color: #000;
+    background-color: #eaeaea;
+    border: 1px solid #444; /* gris foncé */
+    padding: 3px 12px;
+    font-size: 12px;
+    color: #333;
+    border-radius: 20px;
+    font-family: sans-serif;
+    transition: background-color 0.2s;
+  }
+  
+  .menu-container a:hover {
+    background-color: #dcdcdc;
+  }
+  
+#home-logo-container:hover {
+background: rgba(255, 165, 0, 0.9); /* orange clair au hover, pour rappeler le slider */
+}
+
+#home-logo-container img {
+max-width: 28px;
+max-height: 28px;
+display: block;
+pointer-events: none; /* pour que seul le container capte le clic */
+}
+
+#zoom-controls {
+    position: fixed;
+    top: 50px; /* 20px plus bas que le bord supérieur */
+    right: 15px;
+    z-index: 500;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: transparent;
+    padding: 8px;
+    border-radius: 10px;
+    
+  }
+  
+  #zoom-controls button {
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  #zoom-controls button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  
+  
+  #zoom-controls button:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .bmc-button {
+    position: fixed;
+    bottom: 105px;
+    right: 15px;
+    z-index: 9999;
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .bmc-button img {
+    display: block;
+    width: 100px; /* ajuste la taille ici */
+    height: auto;
+    border: 1px solid #404040;
+    border-style: dashed;
+    border-radius: 10px;
+    transition: transform 0.2s ease;
+  }
+
+  .bmc-button:hover img {
+    transform: scale(1.1);
+  }

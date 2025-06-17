@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Comparateur d’images iles&chosalets</title>
+  <link rel="stylesheet" href="styles.css">
+  
+</head>
+<body>
+  <div id="header-title">Les îles - Les chosalets</div>
+<div id="container">
+
+  <div id="zoom-controls">
+    <button id="zoom-in">+</button>
+    <button id="zoom-out">−</button>
+  </div>
+  <div class="image-wrapper" id="bottom-layer">
+    <img src="iles&chosalets_ancien.jpg" alt="Image ancienne des iles&chosalets" />
+  </div>
+
+  <div class="image-wrapper" id="top-layer">
+    <img src="iles&chosalets_nouveau.jpg" alt="Image récente des iles&chosalets" style="opacity: 1;" />
+  </div>
+
+  <div id="transparency-container">
+    <span class="transparency-label left">Ancien PLU</span>
+    <input type="range" id="transparency-slider" min="0" max="100" value="100" />
+    <span class="transparency-label right">Nouveau projet de PLU</span>
+  </div>
+
+</div>
+<div class="menu-container">
+  <a href="bossons.html">Les Bossons</a>
+   <a href="gaillands-pelerins.html">Les Gaillants - Les Pélerins</a>
+   <a href="chamonix.html">Chamonix</a>
+   <a href="mouilles-frasse-coverays.html">Les Mouilles - La Frasse - Les Coverays</a>
+   <a href="praz-rosieres-nants.html">Les Praz - Les Rosières - Les Nants</a>
+   <a href="bois&tines.html">Les Bois - Les Tines</a>
+   <a href="lavancher&joux.html" >Le Lavancher - La Joux</a>
+   <a href="iles&chosalets.html" style="background-color: orange">Les îles - Les chosalets</a>
+   <a href="argentiere.html">Agentière</a>
+   <a href="montroc.html" >Montroc</a>
+   <a href="letour.html" >Le Tour</a>
+   <a href="legende.png" target="_blank" rel="noopener noreferrer" style="background-color: white; border: 2px solid orange">
+    Voir la légende des zonages
+  </a>
+ </div>
+
+ <a href="https://buymeacoffee.com/hugocharlet" target="_blank" rel="noopener noreferrer" class="bmc-button">
+  <img src="buymeacoffee.png" alt="Buy Me A Coffee" />
+</a>
+<script src="script.js"></script>
+
+</body>
+</html>
