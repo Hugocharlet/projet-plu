@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title id="page-title">Comparateur PLU Chamonix</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <a href="index.html" class="home-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+             stroke-width="1.5" stroke="currentColor" class="home-icon">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125
+                     c0 .621.504 1.125 1.125 1.125H9.75v-4.875
+                     c0-.621.504-1.125 1.125-1.125h2.25
+                     c.621 0 1.125.504 1.125 1.125V21h4.125
+                     c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/>
+        </svg>
+    </a>
+
+    <div id="header-title">Chargement...</div>
+    <div id="container">
+
+        <div id="zoom-slider-container">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="home-icon" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6" />
+            </svg>
+            
+            <input type="range" id="zoom-slider" min="0.5" max="5" step="0.01" value="1">
+
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="home-icon" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM13.5 10.5h-6" />
+            </svg>
+        </div>
+
+        <div id="zoom_outer">
+            <div id="zoom">
+                <img src="" id="top-layer" class="on-top" alt="Image nouvelle" />
+                <img src="" id="bottom-layer" alt="Image ancienne" />
+            </div>
+        </div>
+
+        <div id="transparency-container">
+            <span class="transparency-label left">Ancien PLU</span>
+            <input type="range" id="transparency-slider" min="0" max="100" value="100" />
+            <span class="transparency-label right">Nouveau projet de PLU</span>
+        </div>
+
+        <div class="menu-container" id="menu-container">
+            <!-- Les liens seront générés dynamiquement -->
+        </div>
+
+        <a href="https://buymeacoffee.com/hugocharlet" target="_blank" rel="noopener noreferrer" class="bmc-button">
+            <img src="buymeacoffee.png" alt="Buy Me A Coffee" />
+        </a>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="datas.js"></script>
+
+</body>
+</html>

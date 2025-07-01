@@ -1,0 +1,196 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: 0;
+
+  }
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: sans-serif;
+    
+  }
+  #header-title {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    font-family: sans-serif;
+    font-size: 18px;
+    color: #333;
+    z-index: 50; /* inférieur à #legende */
+    user-select: none;
+    white-space: nowrap;
+    font-weight: 600;
+    }
+    
+  #zoom_outer {
+
+    
+  }
+  #zoom {
+
+    width: 100%;
+    height: 100%;
+    transform-origin: 0px 0px;
+    transform: scale(1) translate(0px, 0px);
+    cursor: grab;
+  
+  }
+  div#zoom > img {
+    width: 100%;
+    top: 0px;
+    height: auto;
+    position: absolute;
+    
+  }
+
+  #zoom-slider-container {
+    position: absolute;
+    right: 10px;
+    top: 0%;
+    height: 100vh;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background:transparent;
+    padding: 60px 0px;
+    
+    z-index: 10;
+    user-select: none;
+  }
+  
+  #zoom-slider {
+    
+    -webkit-appearance: slider-vertical;
+    height: 100px;
+    width: 50px;
+    accent-color: rgb(235, 235, 235);
+  }
+  
+  .zoom-label {
+    font-size: 16px;
+    color: #7f7f7f;
+    white-space: nowrap;
+    
+  }
+  
+  .menu-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap; /* permet le retour à la ligne */
+    justify-content: flex-start;
+    gap: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    z-index: 400;
+  }
+  
+  .menu-container a {
+    text-decoration: none;
+    color: #000;
+    background-color: #eaeaea;
+    border: 1px solid #444; /* gris foncé */
+    padding: 3px 12px;
+    font-size: 12px;
+    color: #333;
+    border-radius: 20px;
+    font-family: sans-serif;
+    transition: background-color 0.2s;
+  }
+  
+  .menu-container a:hover {
+    background-color: #dcdcdc;
+  }
+
+  .home-logo {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 1000;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: inherit;
+  }
+  .home-logo:hover .home-icon {
+    color: #000; /* noir au survol */
+  }
+  
+  .home-icon {
+    width: 22px;
+    height: 22px;
+    color: #999; /* ou une autre couleur */
+    transition: color 0.2s ease;
+  }
+
+  #transparency-container {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 20px;
+    border-radius: 12px;
+    user-select: none;
+  }
+  #transparency-slider {
+    width: 300px;
+    accent-color: orange;
+  }
+  .transparency-label {
+    font-size: 16px;
+    color: #333;
+    white-space: nowrap;
+  }
+  .transparency-label.left {
+    text-align: right;
+  }
+  .transparency-label.right {
+    text-align: left;
+  }
+  #top-layer {
+    z-index: 2;
+    opacity: 1; /* Pour t’assurer qu’il est bien visible */
+  }
+  
+  #bottom-layer {
+    z-index: 1;
+  }
+  .bmc-button {
+    position: fixed;
+    bottom: 105px;
+    right: 15px;
+    z-index: 9999;
+    display: inline-block;
+    cursor: pointer;
+  }
+  .bmc-button img {
+    display: block;
+    width: 100px; /* ajuste la taille ici */
+    height: auto;
+    border: 1px solid #404040;
+    border-style: dashed;
+    border-radius: 10px;
+    z-index: 1999;
+    transition: transform 0.2s ease;
+  }
+
+  .bmc-button:hover img {
+    transform: scale(1.1);
+  }
