@@ -49,7 +49,7 @@
             </div>
 
             <!-- transparency container -->
-            <div id="transparency-container">
+            <div id="transparency-container" v-show="!acceuilOuvert && (!menuVisible || windowWidth > 768) ">
                 <span class="transparency-label left">Ancien PLU</span>
                 <input type="range" id="transparency-slider" min="0" max="100" v-model="transparencyPercent"
                     @input="updateTransparency" />
