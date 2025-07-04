@@ -382,6 +382,7 @@ div#zoom>img {
     height: 60px;         /* Un peu plus haut pour plus de confort tactile */
     padding: 0 15px;      /* Moins de padding horizontal pour garder de la place */
     border-radius: 20px;  /* Un peu moins arrondi si tu veux */
+    z-index: 5;
   }
   
   #transparency-slider {
