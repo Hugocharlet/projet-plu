@@ -77,7 +77,7 @@ zoom.addEventListener("touchmove", function (e) {
     let newScale = (currentDistance / initialDistance) * lastScale;
 
     // Limiter l'échelle
-    newScale = Math.min(Math.max(0.5, newScale), 6);
+    newScale = Math.min(Math.max(0.5, newScale), 9);
 
     // Calcul du centre des deux doigts
     const midPoint = {
