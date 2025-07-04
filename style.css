@@ -322,22 +322,7 @@ div#zoom>img {
     /* texte centré */
   }
 
-  #transparency-container {
-    position: fixed;          /* fixe par rapport à la fenêtre */
-    bottom: 20px;             /* un peu au-dessus du bas de l'écran */
-    left: 50%;                /* centré horizontalement */
-    transform: translateX(-50%); /* centrer exactement */
-    width: 80vw;              /* assez large, 80% de la largeur de l'écran */
-    height: 40px;             /* hauteur confortable pour slider tactile */
-    padding: 0 10px;          /* un peu de padding horizontal */
-    background: rgba(255, 255, 255, 0.8); /* fond clair semi-transparent */
-    border-radius: 20px;      /* bords arrondis, plus sympa au toucher */
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15); /* légère ombre pour relief */
-    display: flex;
-    align-items: center;      /* centrer contenu verticalement */
-    touch-action: pan-x;      /* pour slider horizontal tactile */
-    z-index: 5;            /* au-dessus de tout */
-  }
+
 
   #zoom-slider-container  {
     display: none;
@@ -391,5 +376,61 @@ div#zoom>img {
     opacity: 1;
   }
   
+    #transparency-container {
+    width: 85vw;          /* Presque toute la largeur de l'écran */
+    bottom: 15px;          /* Encore plus proche du bord bas */
+    height: 60px;         /* Un peu plus haut pour plus de confort tactile */
+    padding: 0 15px;      /* Moins de padding horizontal pour garder de la place */
+    border-radius: 20px;  /* Un peu moins arrondi si tu veux */
+  }
+  
+  #transparency-slider {
+  -webkit-appearance: none; /* on stylise à fond */
+  width: 100%;
+  height: 32px; /* plus grand que 20px, zone tactile confortable */
+  background: transparent;
+  cursor: pointer;
+  margin: 0 10px;
+  touch-action: pan-x;
+  
+}
+
+/* Piste du slider */
+#transparency-slider::-webkit-slider-runnable-track {
+  height: 8px;
+  background: #ddd;
+  border-radius: 4px;
+  
+}
+
+#transparency-slider::-moz-range-track {
+  height: 8px;
+  background: #ddd;
+  border-radius: 4px;
+}
+
+/* Thumb (le curseur) */
+#transparency-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 32px;   /* beaucoup plus large, pour bien attraper */
+  height: 32px;
+  
+  background:orange; 
+  border-radius: 50%;
+  margin-top: -12px; /* pour centrer verticalement le thumb */
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
+#transparency-slider::-moz-range-thumb {
+  width: 32px;
+  height: 32px;
+  background: #555;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+}
+
 
 }
