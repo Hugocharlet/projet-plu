@@ -41,7 +41,7 @@ zoom.addEventListener("wheel", function (e) {
   (delta > 0) ? (scale *= 1.2) : (scale /= 1.2);
 
   // Limiter l'échelle
-  scale = Math.min(Math.max(0.5, scale), 7);
+  scale = Math.min(Math.max(0.5, scale),19);
 
   pointX = e.clientX - xs * scale;
   pointY = e.clientY - ys * scale;
@@ -78,7 +78,7 @@ zoom.addEventListener("touchmove", function (e) {
     let newScale = (currentDistance / initialDistance) * lastScale;
 
     // Limiter l'échelle
-    newScale = Math.min(Math.max(0.5, newScale), 7);
+    newScale = Math.min(Math.max(0.5, newScale), 16);
 
     // Calcul du centre des deux doigts
     const midPoint = {
