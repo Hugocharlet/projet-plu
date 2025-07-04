@@ -65,6 +65,7 @@ zoom.addEventListener("touchstart", function (e) {
 });
 
 zoom.addEventListener("touchmove", function (e) {
+  console.log("touchmove détecté", e.touches.length);
   e.preventDefault();
   if (e.touches.length === 1 && panning) {
     // Pan à un doigt
@@ -94,6 +95,7 @@ zoom.addEventListener("touchmove", function (e) {
     pointY = midPoint.y - ys * newScale;
 
     scale = newScale;
+    console.log("Pinch scale:", newScale);
     setTransform();
   }
 });
@@ -108,3 +110,21 @@ zoom.addEventListener("touchend", function (e) {
 function getDistance(touch1, touch2) {
   return Math.hypot(touch2.clientX - touch1.clientX, touch2.clientY - touch1.clientY);
 }
+const zoomSlider = document.getElementById("zoom-slider");
+
+zoomSlider.addEventListener("input", function (e) {
+    const newScale = parseFloat(e.target.value); // récupère la valeur du slider
+    const containerWidth = window.innerWidth;
+    const containerHeight = window.innerHeight;
+  
+    // Recentrer sur le milieu de l'écran
+    const xs = (containerWidth / 2 - pointX) / scale;
+    const ys = (containerHeight / 2 - pointY) / scale;
+  
+    scale = newScale;
+  
+    pointX = containerWidth / 2 - xs * scale;
+    pointY = containerHeight / 2 - ys * scale;
+  
+    setTransform();
+  }); 
