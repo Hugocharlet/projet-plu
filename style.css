@@ -261,7 +261,7 @@ div#zoom>img {
 
 .bmc-button {
   position: fixed;
-  bottom: 105px;
+  top: 13px;
   right: 15px;
   z-index: 119999;
   display: inline-block;
@@ -273,8 +273,7 @@ div#zoom>img {
   width: 100px;
   /* ajuste la taille ici */
   height: auto;
-  border: 1px solid #404040;
-  border-style: dashed;
+  border-style: ;
   border-radius: 10px;
   z-index: 1999;
   transition: transform 0.2s ease;
@@ -282,6 +281,7 @@ div#zoom>img {
 
 .bmc-button:hover img {
   transform: scale(1.1);
+  border: 2px solid #668ad9;
 }
 
 
