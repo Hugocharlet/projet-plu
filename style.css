@@ -321,11 +321,28 @@ div#zoom>img {
     /* texte centré */
   }
 
-  #zoom-slider-container {
+  #transparency-container {
+    position: fixed;          /* fixe par rapport à la fenêtre */
+    bottom: 20px;             /* un peu au-dessus du bas de l'écran */
+    left: 50%;                /* centré horizontalement */
+    transform: translateX(-50%); /* centrer exactement */
+    width: 80vw;              /* assez large, 80% de la largeur de l'écran */
+    height: 40px;             /* hauteur confortable pour slider tactile */
+    padding: 0 10px;          /* un peu de padding horizontal */
+    background: rgba(255, 255, 255, 0.8); /* fond clair semi-transparent */
+    border-radius: 20px;      /* bords arrondis, plus sympa au toucher */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15); /* légère ombre pour relief */
+    display: flex;
+    align-items: center;      /* centrer contenu verticalement */
+    touch-action: pan-x;      /* pour slider horizontal tactile */
+    z-index: 5;            /* au-dessus de tout */
+  }
+
+  #zoom-slider-container  {
     display: none;
   }
 
-  #transparency-container {
+  .transparency-label  {
     display: none;
   }
 
