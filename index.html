@@ -1,82 +1,251 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Comparaison ancien PLU / nouveau projet</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background-color: #f7f7f7;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    h1 {
-      margin-top: 40px;
-      font-size: 2em;
-      text-align: center;
-      color: #333;
-    }
-
-    .sommaire-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 15px;
-      max-width: 900px;
-      padding: 40px 20px;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    .sommaire-container a {
-      display: block;
-      padding: 15px 20px;
-      background-color: #e0e0e0;
-      border-radius: 8px;
-      text-decoration: none;
-      color: #222;
-      text-align: center;
-      font-weight: 500;
-      transition: all 0.2s ease-in-out;
-    }
-
-    .sommaire-container a:hover {
-      background-color: #d0d0d0;
-    }
-
-    .sommaire-container a[style*="background-color: orange"] {
-      background-color: orange !important;
-      color: white;
-    }
-
-    .sommaire-container a[style*="background-color: white"] {
-      background-color: white !important;
-      border: 2px solid orange !important;
-      color: orange;
-    }
-  </style>
+    <title>Zonage Chamonix</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
 </head>
+
 <body>
-  <h1>PLAN LOCAL D'URBANISME CHAMONIX 2025</h1>
-  <h1>Comparaison ancien / nouveau </h1>
+    <div id="app">
 
-  <div class="sommaire-container">
-    <a href="comparateur.html?zone=bossons#">Les Bossons</a>
-    <a href="comparateur.html?zone=gaillands-pelerins#">Les Gaillants - Les Pélerins</a>
-    <a href="comparateur.html?zone=chamonix#">Chamonix</a>
-    <a href="comparateur.html?zone=mouilles-frasse-coverays#">Les Mouilles - La Frasse - Les Coverays</a>
-    <a href="comparateur.html?zone=praz-rosieres-nants#">Les Praz - Les Rosières - Les Nants</a>
-    <a href="comparateur.html?zone=bois&tines#">Les Bois - Les Tines</a>
-    <a href="comparateur.html?zone=lavancher&joux#">Le Lavancher - La Joux</a>
-    <a href="comparateur.html?zone=iles&chosalets#">Les îles - Les Chosalets</a>
-    <a href="comparateur.html?zone=argentiere#">Argentière</a>
-    <a href="comparateur.html?zone=montroc#">Montroc</a>
-    <a href="comparateur.html?zone=letour#">Le Tour</a>
+        <!-- Écran d’accueil -->
+        <div v-if="acceuilOuvert" class="accueil_container">
+            <div class="titre_acceuil">PLAN LOCAL D'URBANISME CHAMONIX 2025</div>
+            <div class="titre_acceuil">Comparaison ancien / nouveau </div>
+            <div class="sommaire-container">
+                <a v-for="(zone, index) in zonesData" :key="index" @click="selectZone(index)">
+                    {{ zone.title }}
+                </a>
+                <a class="sommaire-container" href="https://www.facebook.com/groups/projetpluchamonix2025"
+                    target="_blank" style="color : white ; background-color : #3b5998 ">Mieux comprendre et s'informer
+                    sur le PLU → </a>
+            </div>
+        </div>
+        <!-- header & footer -->
+        <div>
+            <!-- header -->
+            <div class="header_container ">
+                <a class="home-icon" @click="retourAccueil">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="home-icon">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125
+                             c0 .621.504 1.125 1.125 1.125H9.75v-4.875
+                             c0-.621.504-1.125 1.125-1.125h2.25
+                             c.621 0 1.125.504 1.125 1.125V21h4.125
+                             c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                    </svg>
+                </a>
 
-  </div>
+                <h1 id="header-title">{{ selectedZone.title }}</h1>
 
+                <a @click="openzoneMenu()" class="menu-zone">
+                    Zones →
+                </a>
+            </div>
+
+            <!-- transparency container -->
+            <div id="transparency-container">
+                <span class="transparency-label left">Ancien PLU</span>
+                <input type="range" id="transparency-slider" min="0" max="100" v-model="transparencyPercent"
+                    @input="updateTransparency" />
+                <span class="transparency-label right">Nouveau projet de PLU</span>
+            </div>
+
+            <!-- footer -->
+            <transition name="slide-menu">
+                <div class="menu-container" id="menu-container" v-if="menuVisible && !acceuilOuvert">
+                    <a v-for="(zone, index) in zonesData" :key="index" @click="selectZone(index)"
+                        :style="selectedIndex === index ? 'background-color: orange' : ''">
+                        {{ zone.title }}
+                    </a>
+                </div>
+            </transition>
+            <!-- buy me a coffee -->
+            <a href="https://buymeacoffee.com/hugocharlet" target="_blank" rel="noopener noreferrer" class="bmc-button"
+                :style="{ transform: acceuilOuvert? 'translateY(80px)' : 'translateY(0)' }">
+                <img src="buymeacoffee.png" alt="Buy Me A Coffee" />
+            </a>
+        </div>
+
+        <!-- Maps -->
+        <div id="container">
+            <div id="zoom-slider-container">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="home-icon" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6" />
+                </svg>
+
+                <input type="range" id="zoom-slider" min="0.5" max="5" step="0.01" value="1">
+
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="home-icon" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM13.5 10.5h-6" />
+                </svg>
+            </div>
+            <div id="zoom_outer" v-show="!acceuilOuvert && (!menuVisible || windowWidth > 768)">
+                <div id="zoom">
+                    <img :src="selectedZone.topImage" alt="Nouveau" id="top-layer" :style="{ opacity: transparency }" />
+                    <img :src="selectedZone.bottomImage" alt="Ancien" />
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <!-- script Vue -->
+    <script>
+        const { createApp } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    selectedIndex: 0,
+                    transparencyPercent: 100, // slider 0-100
+                    transparency: 1,
+                    acceuilOuvert: true,
+                    menuVisible: true,
+                    windowWidth: window.innerWidth,
+
+
+                    zonesData: [
+                        {
+                            "title": "Les Bossons",
+                            "topImage": "bossons_nouveau.jpg",
+                            "bottomImage": "bossons_ancien.jpg",
+                            "activePage": "bossons.html",
+                            "url": "les-bossons"
+                        },
+                        {
+                            "title": "Les Gaillants - Les Pélerins",
+                            "topImage": "gaillands-pelerins_nouveau.jpg",
+                            "bottomImage": "gaillands-pelerins_ancien.jpg",
+                            "activePage": "gaillands-pelerins.html",
+                            "url": "les-gaillants-les-pelerins"
+                        },
+                        {
+                            "title": "Chamonix",
+                            "topImage": "chamonix_nouveau.jpg",
+                            "bottomImage": "chamonix_ancien.jpg",
+                            "activePage": "chamonix.html",
+                            "url": "chamonix"
+                        },
+                        {
+                            "title": "Les Mouilles - La Frasse - Les Coverays",
+                            "topImage": "mouilles-frasse-coverays_nouveau.jpg",
+                            "bottomImage": "mouilles-frasse-coverays_ancien.jpg",
+                            "activePage": "mouilles-frasse-coverays.html",
+                            "url": "les-mouilles-la-frasse-les-coverays"
+                        },
+                        {
+                            "title": "Les Praz - Les Rosières - Les Nants",
+                            "topImage": "praz-rosieres-nants_nouveau.jpg",
+                            "bottomImage": "praz-rosieres-nants_ancien.jpg",
+                            "activePage": "praz-rosieres-nants.html",
+                            "url": "les-praz-les-rosieres-les-nants"
+                        },
+                        {
+                            "title": "Les Bois - Les Tines",
+                            "topImage": "bois-tines_nouveau.jpg",
+                            "bottomImage": "bois-tines_ancien.jpg",
+                            "activePage": "bois-tines.html",
+                            "url": "les-bois-les-tines"
+                        },
+                        {
+                            "title": "Le Lavancher - La Joux",
+                            "topImage": "lavancher-joux_nouveau.jpg",
+                            "bottomImage": "lavancher-joux_ancien.jpg",
+                            "activePage": "lavancher-joux.html",
+                            "url": "le-lavancher-la-joux"
+                        },
+                        {
+                            "title": "Les îles - Les chosalets",
+                            "topImage": "iles-chosalets_nouveau.jpg",
+                            "bottomImage": "iles-chosalets_ancien.jpg",
+                            "activePage": "iles-chosalets.html",
+                            "url": "les-iles-les-chosalets"
+                        },
+                        {
+                            "title": "Agentière",
+                            "topImage": "argentiere_nouveau.jpg",
+                            "bottomImage": "argentiere_ancien.jpg",
+                            "activePage": "argentiere.html",
+                            "url": "argentiere"
+                        },
+                        {
+                            "title": "Montroc",
+                            "topImage": "montroc_nouveau.jpg",
+                            "bottomImage": "montroc_ancien.jpg",
+                            "activePage": "montroc.html",
+                            "url": "montroc"
+                        },
+                        {
+                            "title": "Le Tour",
+                            "topImage": "letour_nouveau.jpg",
+                            "bottomImage": "letour_ancien.jpg",
+                            "activePage": "letour.html",
+                            "url": "le-tour"
+                        }
+                    ]
+
+                };
+            },
+
+            computed: {
+                selectedZone() {
+                    return this.zonesData[this.selectedIndex];
+                }
+            },
+
+            methods: {
+                updateTransparency() {
+                    this.transparency = this.transparencyPercent / 100;
+                },
+                openzoneMenu() {
+
+                    this.menuVisible = true;
+
+                },
+                selectZone(index) {
+                    this.selectedIndex = index;
+                    this.acceuilOuvert = false;
+                    if (window.innerWidth <= 768) {
+                        this.menuVisible = false;
+                    }
+                    // Forcer la transparence à 100%
+                    this.transparencyPercent = 100;
+                    this.updateTransparency();
+
+                },
+                retourAccueil() {
+                    this.acceuilOuvert = true;
+                }
+
+
+            },
+
+            mounted() {
+                // init la transparence au montage
+                this.updateTransparency();
+                window.addEventListener('resize', () => {
+                    this.windowWidth = window.innerWidth;
+                });
+
+            },
+
+        }).mount('#app');
+
+    </script>
+    <!-- script externe -->
+    <script src="script.js"></script>
 </body>
+
 </html>

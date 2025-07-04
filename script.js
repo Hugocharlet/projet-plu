@@ -5,17 +5,8 @@ pointY = 0,
 start = { x: 0, y: 0 },
 zoom = document.getElementById("zoom");
 zoom_outer = document.getElementById("zoom_outer");
-zoomInBtn = document.getElementById("zoom-in");
-zoomOutBtn = document.getElementById("zoom-out");
-img = document.querySelector('img')
-const transparencySlider = document.getElementById("transparency-slider");
-const topLayer = document.getElementById("top-layer");
 
-transparencySlider.addEventListener("input", function (e) {
-  const value = parseInt(e.target.value); // valeur entre 0 et 100
-  const opacity = value / 100; // converti en 0.0 – 1.0
-  topLayer.style.opacity = opacity;
-});
+
 
 function setTransform() {
 zoom.style.transform = "translate(" + pointX + "px, " + pointY + "px) scale(" + scale + ")";
