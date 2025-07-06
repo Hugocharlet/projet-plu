@@ -1,0 +1,255 @@
+
+
+.legende_container {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    margin: 40px;
+    color: #333;
+    line-height: 1.6;
+    position: absolute;
+    top: 0px;
+    z-index: 1000000;
+    width: 100%;
+    padding: 30px;
+    margin: 0px;
+}
+
+.titre-legende,
+.sous-titre-legend  {
+    text-align: left;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+.titre-legende {
+    text-align: center;
+    font-size: 28px;
+    
+}
+
+.sous-texte {
+    font-weight: normal;
+    font-size: 16px;
+}
+
+.zone-container {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 16px;
+    align-items: start;
+    background: #fff;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.zone-symbol {
+    width: 60px;
+    height: 25px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.zone-description strong {
+    display: inline;
+    width: 50px;
+}
+
+.hachures {
+
+    background-color: #fccf89;
+    background-image: repeating-linear-gradient(45deg,
+            #fefe01,
+            #fefe01 4px,
+            transparent 4px,
+            transparent 8px);
+}
+
+#UA {
+    background-color: #fe7e7e;
+}
+
+#UB {
+    background-color: #ffd28b;
+}
+
+#UC {
+    background-color: #fed1bd;
+}
+
+#UD {
+    background-color: #ffeabd;
+}
+
+#UE {
+    background-color: #fee6c7;
+}
+
+#UF {
+    background-color: #fecfd0;
+}
+
+#UT {
+    background-color: #fec1c1;
+}
+
+#UV {
+    background-color: #e7beff;
+}
+
+#UY {
+    background-color: #e7beff;
+}
+
+#UZ {
+    background-color: #df73ff;
+}
+
+#AU {
+    background-color: #fefe00;
+}
+
+#A {
+    background-color: #fefec7;
+}
+
+#N {
+    background-color: #bffebd;
+}
+
+#Nr {
+    background-color: #b6e4b6;
+}
+/* Zones urbaines */
+#Ua {
+  background-color: #e4898a;
+}
+#Uas {
+  background-color: #c6a6b0;
+}
+#Ubd1 {
+  background-color: #c39f80;
+}
+#Ubd2 {
+  background-color: #e4c0a3;
+}
+#Ubd3 {
+  background-color: #ecb37d;
+}
+#Ubp1 {
+  background-color: #f1d4bd;
+}
+#Ubp2 {
+  background-color: #f9ddb9;
+}
+#Uc {
+  background-color: #e9abbe;
+}
+#Ue {
+  background-color: #b3b482;
+}
+#Ueq {
+  background-color: #c8d4db;
+}
+#Ueq1 {
+  background-color: #b7d7ea;
+}
+#Ut1 {
+  background-color: #c6a6b1;
+}
+#Ut2 {
+  background-color: #c77faf;
+}
+
+/* Zones à urbaniser */
+#AU-Ubd3 {
+  background-color: #d5c5dc;
+}
+#AU-Ubp1 {
+  background-color: #b497c0;
+}
+#AU-Uc {
+  background-color: #9e8ca7;
+}
+
+/* Zones agricoles */
+#A {
+  background-color: #f8f6bf;
+}
+
+/* Zones naturelles */
+#N {
+  background-color: #eaf3e2;
+}
+#Nco {
+  background-color: #81ba9a;
+}
+#Np {
+  background-color: #d9e3da;
+}
+#Nt {
+  background-color: #90adbf;
+}
+
+
+.close-button {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    cursor: pointer;
+    margin-left: auto;
+  }
+  
+  .close-button::before,
+  .close-button::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 2px;
+    background-color: black;
+    transform-origin: center;
+  }
+  
+  .close-button::before {
+    transform: rotate(45deg);
+  }
+  
+  .close-button::after {
+    transform: rotate(-45deg);
+  }
+  
+/* Responsive : mobile */
+@media (max-width: 600px) {
+    body {
+        margin: 16px;
+    }
+
+    .zone-container {
+        grid-template-columns: 25px 1fr;
+    }
+
+    .zone-symbol {
+        width: 25px;
+        height: 25px;
+    }
+
+    .zone-description {
+        font-size: 15px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+}

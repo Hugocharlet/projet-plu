@@ -7,6 +7,7 @@
 
     <title>Zonage Chamonix</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="legende-style.css">
     <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
 </head>
 
@@ -15,6 +16,8 @@
 
         <!-- Écran d’accueil -->
         <div v-if="acceuilOuvert" class="accueil_container">
+            <div class="close-button" style="margin-right: 20px; margin-top: 20px" @click="acceuilOuvert = false"></div>
+
             <div class="titre_acceuil">PLAN LOCAL D'URBANISME CHAMONIX 2025</div>
             <div class="titre_acceuil">Comparaison ancien / nouveau </div>
             <div class="sommaire-container">
@@ -63,10 +66,11 @@
                         :style="selectedIndex === index ? 'background-color: orange' : ''">
                         {{ zone.title }}
                     </a>
-                    <a href="legende.png" target="_blank" rel="noopener noreferrer" style="background-color: white; border: 2px solid orange">
+                    <a @click="legendeNouveauVisible = true"
+                        style="background-color: white; border: 2px solid orange">
                         Légende des zonages nouveau PLU
                     </a>
-                    <a href="legende_ancien-plu.html" target="_blank" rel="noopener noreferrer" style="background-color: white; border: 2px solid orange">
+                    <a @click="legendeAncienVisible = true" style="background-color: white; border: 2px solid orange">
                         Légende des zonages ancien PLU
                     </a>
                 </div>
@@ -104,6 +108,48 @@
 
 
         </div>
+        <!-- Légende ancien -->
+        <div v-if="legendeAncienVisible" class="legende_container">
+            <div class="close-button" @click="legendeAncienVisible = false"></div>
+
+            <div class="titre-legende">Légende – Ancien PLU</div>
+
+            <div v-for="categorie in categories_ancien" :key="categorie.titre">
+                <div class="sous-titre-legend ">
+                    {{ categorie.titre }}
+                    <span class="sous-texte" v-if="categorie.sousTexte">({{ categorie.sousTexte }})</span>
+                </div>
+
+                <div v-for="zone in categorie.zones" :key="zone.nom" class="zone-container">
+                    <div class="zone-symbol" :id="zone.id || null" :class="zone.classe ? zone.classe : ''"></div>
+                    <div class="zone-description">
+                        <strong>{{ zone.nom }} :</strong> {{ zone.description }}
+                    </div>
+                </div>
+            </div>
+        </div>
+                <!-- Légende nouveau -->
+        <div v-if="legendeNouveauVisible" class="legende_container">
+            <div class="close-button" @click="legendeNouveauVisible = false"></div>
+
+            <div class="titre-legende">Légende – Nouveau PLU</div>
+
+            <div v-for="categorie in categories_nouveau" :key="categorie.titre">
+                <div class="sous-titre-legend ">
+                    {{ categorie.titre }}
+                    <span class="sous-texte" v-if="categorie.sousTexte">({{ categorie.sousTexte }})</span>
+                </div>
+
+                <div v-for="zone in categorie.zones" :key="zone.nom" class="zone-container">
+                    <div class="zone-symbol" :id="zone.id || null" :class="zone.classe ? zone.classe : ''"></div>
+                    <div class="zone-description">
+                        <strong>{{ zone.nom }} :</strong> {{ zone.description }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
 
@@ -120,6 +166,8 @@
                     acceuilOuvert: true,
                     menuVisible: true,
                     windowWidth: window.innerWidth,
+                    legendeAncienVisible: false,
+                    legendeNouveauVisible: false,
 
 
                     zonesData: [
@@ -200,7 +248,105 @@
                             "activePage": "letour.html",
                             "url": "le-tour"
                         }
-                    ]
+                    ],
+
+                    categories_ancien: [
+                        {
+                            titre: 'Zones Urbaines',
+                            sousTexte: 'constructibles en l\'état',
+                            zones: [
+                                { nom: 'UA', id: 'UA', description: 'Zone urbaine centrale, destinée aux logements, commerces, bureaux, services, et équipements touristiques.' },
+                                { nom: 'UB', id: 'UB', description: 'Zone urbaine en continuité avec le centre, accueillant logements, hébergements touristiques, et équipements publics.' },
+                                { nom: 'UC', id: 'UC', description: 'Zone urbaine mixte, combinant habitations collectives, espaces verts, et activités commerciales ou artisanales.' },
+                                { nom: 'UD', id: 'UD', description: 'Zone résidentielle principalement composée de maisons individuelles ou multifamiliales.' },
+                                { nom: 'UE', id: 'UE', description: 'Zone résidentielle d\'extension des centres urbains, villages et hameaux, avec faible densité.' },
+                                { nom: 'UF', id: 'UF', description: 'Zone résidentielle en bordure de sites naturels, avec grandes parcelles et faible densité.' },
+                                { nom: 'UT', id: 'UV', description: 'Zone dédiée aux hébergements touristiques légers (campings, caravanages, etc.).' },
+                                { nom: 'UV', id: 'UV', description: 'Zone des villages et hameaux anciens, préservant leur caractère traditionnel.' },
+                                { nom: 'UY', id: 'UZ', description: 'Zone d\'activités artisanales et industrielles, parfois mixte avec habitat.' },
+                                { nom: 'UZ', id: 'UZ', description: 'Zone d\'activité ferroviaire, incluant les gares et plateformes.' }
+                            ]
+                        },
+                        {
+                            titre: 'Zones à Urbaniser',
+                            sousTexte: 'constructibles sous réserve d\'aménagements ou de révision du PLU',
+                            zones: [
+                                { nom: '1AU', id: 'AU', description: 'Zone destinée à être urbanisée, l\'urbanisation est possible immédiatement, sous réserve de respecter les règles du PLU.' },
+                                { nom: '1AUB', classe: 'hachures', description: 'Zone à urbaniser avec des restrictions liées aux risques naturels, nécessitant des aménagements spécifiques pour garantir la sécurité avant toute construction.' },
+                                { nom: '1AUD / 1AUDa', classe: 'hachures', description: 'Zone à urbaniser pour des maisons individuelles ou multifamiliales, suivant les règles de la zone UD/ UDa.' },
+                                { nom: '1AUE / 1AUEa / 1AUEb / 1AUEc / 1AUEd / 1AUEr / 1AUE1 / 1AUE2/ 1AUE*', classe: 'hachures', description: 'Zone à urbaniser pour des maisons individuelles ou multifamiliales, suivant les règles de la zone UEa/ UEb / UEc ...etc.' },
+                                { nom: '1AUY / 1AUYa', classe: 'hachures', description: 'Secteur à urbaniser avec des caractéristiques similaires au secteur UY/ UYa.' },
+                                { nom: '2AU', id: 'AU', description: 'Zone inconstructible dans l\'état actuel. Elle regroupe des secteurs naturels qui pourraient être urbanisés à l\'avenir, mais uniquement après une modification ou révision du PLU.' }
+                            ]
+                        },
+                        {
+                            titre: 'Zones Agricoles',
+                            sousTexte: 'constructions réservées à l\'activité agricole',
+                            zones: [
+                                { nom: 'A', id: 'A', description: 'Zone réservée à l\'agriculture, aux exploitations agricoles, et aux activités liées.' }
+                            ]
+                        },
+                        {
+                            titre: 'Zones Naturelles',
+                            sousTexte: 'non constructibles',
+                            zones: [
+                                { nom: 'N', id: 'N', description: 'Zone naturelle protégée pour sa qualité paysagère, écologique, ou historique.' },
+                                { nom: 'Na', id: 'N', description: 'Secteur réservé à la pratique du golf.' },
+                                { nom: 'Nc', id: 'N', description: 'Secteur d\'alpages.' },
+                                { nom: 'Nr', id: 'Nr', description: 'Zone affectée par des risques naturels (exemple : avalanches).' }
+                            ]
+                        }
+                    ],
+                    
+                    categories_nouveau : [
+                        {
+                            titre: "Zones urbaines",
+                            sousTexte: "constructibles en l'état",
+                            zones: [
+                                { nom: "Ua", id: "Ua", description: "Zones urbaines de centre-ville" },
+                                { nom: "Uas", id: "Uas", description: "Zones urbaines de centralités avec une forte mixité de fonctions (ex : Argentière et Les Praz)" },
+                                { nom: "Ubd1", id: "Ubd1", description: "Zones urbaines à dominante résidentielle, composé d'habitat individuel dense de différentes époques (Hauteur de 12m & CES de 20%)" },
+                                { nom: "Ubd2", id: "Ubd2", description: "Zones urbaines à dominante résidentielle, composé d'habitat individuel dense de différentes époques (Hauteur de 10m & CES de 40%)" },
+                                { nom: "Ubd3", id: "Ubd3", description: "Zones urbaines à dominante résidentielle, composé d'habitat individuel dense de différentes époques (Hauteur de 8m & CES de 60%)" },
+                                { nom: "Ubp1", id: "Ubp1", description: "Zones urbaines correspondant à un tissu urbain composé majoritairement d'un habitat individuel lâche à vocation principale d'habitation sous forme de maisons individuelles ou multi-familiales (CES de 20%)" },
+                                { nom: "Ubp2", id: "Ubp2", description: "Zones urbaines correspondant à un tissu urbain composé majoritairement d'un habitat individuel lâche à vocation principale d'habitation sous forme de maisons individuelles ou multi-familiales (CES de 10%)" },
+                                { nom: "Uc", id: "Uc", description: "Zones urbaines composée majoritairement d'habitat collectif situés en dehors des espaces de centralités (ex : Chamonix sud, Les Pèlerins, Le Plagnole, etc.)" },
+                                { nom: "Ue", id: "Ue", description: "Zones urbaines déjà urbanisées dans lesquels ont vocation à prendre place les établissements artisanaux, les dépôts et installations dont le voisinage avec les logements n'est pas souhaitable" },
+                                { nom: "Ueq", id: "Ueq", description: "Zones urbaines circonscrites aux territoires réservés aux divers équipements collectifs, publics ou privés (Hauteur de 15m)" },
+                                { nom: "Ueq1", id: "Ueq1", description: "Sous-secteur de la zone Ueq réservé aux équipements collectifs, publics ou privés (Hauteur de 20m)" },
+                                { nom: "Ut1", id: "Ut1", description: "Zones urbaines touristiques accueillant des hébergements touristiques légers : camping, caravaning, habitations légères de loisirs et équipements connexes" },
+                                { nom: "Ut2", id: "Ut2", description: "Zones urbaines touristiques englobant les gares de départs des remontées mécaniques en zone urbaine" }
+                            ]
+                        },
+                        {
+                            titre: "Zones à urbaniser",
+                            sousTexte: "constructibles sous réserve d'aménagements ou de révision du PLU",
+                            zones: [
+                                { nom: "AU-Ubd3", id: "AU-Ubd3", description: "Zone à urbaniser correspondant au règlement de la zone Ubd3" },
+                                { nom: "AU-Ubp1", id: "AU-Ubp1", description: "Zone à urbaniser correspondant au règlement de la zone Ubp1" },
+                                { nom: "AU-Uc", id: "AU-Uc", description: "Zone à urbaniser correspondant au règlement de la zone Uc" }
+                            ]
+                        },
+                        {
+                            titre: "Zones agricoles",
+                            sousTexte: "constructions réservées à l'activité agricole",
+                            zones: [
+                                { nom: "A", id: "A", description: "Zones agricoles" }
+                            ]
+                        },
+                        {
+                            titre: "Zones naturelles",
+                            sousTexte: "non constructibles",
+                            zones: [
+                                { nom: "N", id: "N", description: "Zones naturelles" },
+                                { nom: "Nco", id: "Nco", description: "Zones naturelles corridors" },
+                                { nom: "Np", id: "Np", description: "Zones naturelles protégées" },
+                                { nom: "Nt", id: "Nt", description: "Zones naturelles touristiques" },
+                               
+                            ]
+                        }
+                    ],
+
 
                 };
             },
