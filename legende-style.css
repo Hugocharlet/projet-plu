@@ -228,8 +228,9 @@
   
 /* Responsive : mobile */
 @media (max-width: 600px) {
-    body {
-        margin: 16px;
+     .legende_container{
+        position: relative;
+        margin: 0px;
     }
 
     .zone-container {

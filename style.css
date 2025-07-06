@@ -24,6 +24,7 @@ h1 {
 }
 
 .accueil_container {
+  background-color: red;
   position: fixed;
   top: 0;
   left: 0;
@@ -273,7 +274,7 @@ div#zoom>img {
   width: 100px;
   /* ajuste la taille ici */
   height: auto;
-  border-style: ;
+
   border-radius: 10px;
   z-index: 1999;
   transition: transform 0.2s ease;
@@ -291,6 +292,7 @@ div#zoom>img {
 
   .accueil_container {
     position: relative;
+    padding: 20px 10px;
   }
 
   .menu-container {

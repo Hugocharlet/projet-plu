@@ -30,9 +30,9 @@
             </div>
         </div>
         <!-- header & footer -->
-        <div>
+        <div v-if="!legendeAncienVisible && !legendeNouveauVisible">
             <!-- header -->
-            <div class="header_container ">
+            <div v-if="!acceuilOuvert" class="header_container ">
                 <a class="home-icon" @click="retourAccueil">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                         stroke="currentColor" class="home-icon">
@@ -46,7 +46,7 @@
 
                 <h1 id="header-title">{{ selectedZone.title }}</h1>
 
-                <a @click="openzoneMenu()" class="menu-zone">
+                <a @click="toggleZoneMenu()" class="menu-zone">
                     Zones →
                 </a>
             </div>
@@ -66,8 +66,7 @@
                         :style="selectedIndex === index ? 'background-color: orange' : ''">
                         {{ zone.title }}
                     </a>
-                    <a @click="legendeNouveauVisible = true"
-                        style="background-color: white; border: 2px solid orange">
+                    <a @click="legendeNouveauVisible = true" style="background-color: white; border: 2px solid orange">
                         Légende des zonages nouveau PLU
                     </a>
                     <a @click="legendeAncienVisible = true" style="background-color: white; border: 2px solid orange">
@@ -128,7 +127,7 @@
                 </div>
             </div>
         </div>
-                <!-- Légende nouveau -->
+        <!-- Légende nouveau -->
         <div v-if="legendeNouveauVisible" class="legende_container">
             <div class="close-button" @click="legendeNouveauVisible = false"></div>
 
@@ -297,8 +296,8 @@
                             ]
                         }
                     ],
-                    
-                    categories_nouveau : [
+
+                    categories_nouveau: [
                         {
                             titre: "Zones urbaines",
                             sousTexte: "constructibles en l'état",
@@ -342,7 +341,7 @@
                                 { nom: "Nco", id: "Nco", description: "Zones naturelles corridors" },
                                 { nom: "Np", id: "Np", description: "Zones naturelles protégées" },
                                 { nom: "Nt", id: "Nt", description: "Zones naturelles touristiques" },
-                               
+
                             ]
                         }
                     ],
@@ -361,10 +360,12 @@
                 updateTransparency() {
                     this.transparency = this.transparencyPercent / 100;
                 },
-                openzoneMenu() {
-
-                    this.menuVisible = true;
-
+                toggleZoneMenu() {
+                    if (window.innerWidth <= 768) {
+                        this.menuVisible = !this.menuVisible;
+                    } else {
+                        this.menuVisible = true; // sur desktop, on garde le menu toujours visible
+                    }
                 },
                 selectZone(index) {
                     this.selectedIndex = index;
@@ -377,6 +378,7 @@
                     this.updateTransparency();
 
                 },
+
                 retourAccueil() {
                     this.acceuilOuvert = true;
                 }
