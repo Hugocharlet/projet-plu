@@ -49,7 +49,7 @@
             </div>
 
             <!-- transparency container -->
-            <div id="transparency-container" v-show="!acceuilOuvert && (!menuVisible || windowWidth > 768) ">
+            <div id="transparency-container">
                 <span class="transparency-label left">Ancien PLU</span>
                 <input type="range" id="transparency-slider" min="0" max="100" v-model="transparencyPercent"
                     @input="updateTransparency" />
@@ -63,11 +63,17 @@
                         :style="selectedIndex === index ? 'background-color: orange' : ''">
                         {{ zone.title }}
                     </a>
+                    <a href="legende.png" target="_blank" rel="noopener noreferrer" style="background-color: white; border: 2px solid orange">
+                        Légende des zonages nouveau PLU
+                    </a>
+                    <a href="legende_ancien-plu.html" target="_blank" rel="noopener noreferrer" style="background-color: white; border: 2px solid orange">
+                        Légende des zonages ancien PLU
+                    </a>
                 </div>
             </transition>
             <!-- buy me a coffee -->
             <a href="https://buymeacoffee.com/hugocharlet" target="_blank" rel="noopener noreferrer" class="bmc-button"
-                :style="{ transform: acceuilOuvert? 'translateY(92vh)' : 'translateY(0)' }">
+                :style="{ transform: acceuilOuvert? 'translateY(80px)' : 'translateY(0)' }">
                 <img src="buymeacoffee.png" alt="Buy Me A Coffee" />
             </a>
         </div>
@@ -223,8 +229,6 @@
                     // Forcer la transparence à 100%
                     this.transparencyPercent = 100;
                     this.updateTransparency();
-
-                    
 
                 },
                 retourAccueil() {

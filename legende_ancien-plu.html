@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Légende Ancien PLU</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 40px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h1,
+        h2 {
+            text-align: left;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 28px;
+        }
+
+        .zone-container {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 16px;
+            align-items: start;
+            background: #fff;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .zone-symbol {
+            width: 60px;
+            height: 25px;
+            border: 1px solid #aaa;
+            border-radius: 4px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .zone-description strong {
+            display: inline;
+            width: 50px;
+        }
+
+        .hachures {
+
+            background-color: #fccf89;
+            background-image: repeating-linear-gradient(45deg,
+                    #fefe01,
+                    #fefe01 4px,
+                    transparent 4px,
+                    transparent 8px);
+        }
+
+        #UA {
+            background-color: #fe7e7e;
+        }
+
+        #UB {
+            background-color: #ffd28b;
+        }
+
+        #UC {
+            background-color: #fed1bd;
+        }
+
+        #UD {
+            background-color: #ffeabd;
+        }
+
+        #UE {
+            background-color: #fee6c7;
+        }
+
+        #UF {
+            background-color: #fecfd0;
+        }
+
+        #UT {
+            background-color: #fec1c1;
+        }
+
+        #UV {
+            background-color: #e7beff;
+        }
+
+        #UY {
+            background-color: #e7beff;
+        }
+
+        #UZ {
+            background-color: #e7beff;
+        }
+
+        #AU {
+            background-color: #fefe00;
+        }
+
+        #A {
+            background-color: #fefec7;
+        }
+
+        #N {
+            background-color: #bffebd;
+        }
+
+        #Nr {
+            background-color: #b6e4b6;
+        }
+
+        /* Responsive : mobile */
+        @media (max-width: 600px) {
+            body {
+                margin: 16px;
+            }
+
+            .zone-container {
+                grid-template-columns: 25px 1fr;
+            }
+
+            .zone-symbol {
+                width: 25px;
+                height: 25px;
+            }
+
+            .zone-description {
+                font-size: 15px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            h2 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Légende – Ancien PLU</h1>
+
+    <h2>Zones Urbaines</h2>
+
+    <div class="zone-container">
+        <div class="zone-symbol" id="UA"></div>
+        <div class="zone-description"><strong>UA :</strong> Zone urbaine centrale, destinée aux logements, commerces,
+            bureaux, services, et équipements touristiques.</div>
+    </div>
+    <div class="zone-container">
+        <div class="zone-symbol" id="UB"></div>
+        <div class="zone-description"><strong>UB :</strong> Zone urbaine en continuité avec le centre, accueillant
+            logements, hébergements touristiques, et équipements publics.</div>
+    </div>
+    <div class="zone-container">
+        <div class="zone-symbol" id="UC"></div>
+        <div class="zone-description"><strong>UC :</strong> Zone urbaine mixte, combinant habitations collectives,
+            espaces verts, et activités commerciales ou artisanales.</div>
+    </div>
+    <div class="zone-container">
+        <div class="zone-symbol" id="UD"></div>
+        <div class="zone-description"><strong>UD :</strong> Zone résidentielle principalement composée de maisons
+            individuelles ou multifamiliales.</div>
+    </div>
+    <div class="zone-container">
+        <div class="zone-symbol" id="UE"></div>
+        <div class="zone-description"><strong>UE :</strong> Zone résidentielle d'extension des centres urbains, villages
+            et hameaux, avec faible densité.</div>
+    </div>
+    <div class="zone-container">
+        <div class="zone-symbol" id="UF"></div>
+        <div class="zone-description"><strong>UF :</strong> Zone résidentielle en bordure de sites naturels, avec
+            grandes parcelles et faible densité.</div>
+        <div></div>
+        <div class="zone-description"><strong>UT :</strong> Zone dédiée aux hébergements touristiques légers (campings,
+            caravanages, etc.).</div>
+    </div>
+
+    <div class="zone-container">
+        <div class="zone-symbol" id="UV"></div>
+        <div class="zone-description"><strong>UV :</strong> Zone des villages et hameaux anciens, préservant leur
+            caractère traditionnel.</div>
+        <div></div>
+        <div class="zone-description"><strong>UY :</strong> Zone d'activités artisanales et industrielles, parfois mixte
+            avec habitat.</div>
+        <div></div>
+        <div class="zone-description"><strong>UZ :</strong> Zone d'activité ferroviaire, incluant les gares et
+            plateformes.</div>
+
+    </div>
+
+
+    <h2>Zones à Urbaniser</h2>
+
+    <div class="zone-container">
+        <div class="zone-symbol" id="AU"></div>
+        <div class="zone-description"><strong>1AU :</strong> Zone destinée à être urbanisée, avec différents
+            sous-secteurs selon leur vocation (résidentielle, artisanale, etc.).</div>
+        <div></div>
+        <div class="zone-description"><strong>2AU :</strong> Zone destinée à être urbanisée, avec différents
+            sous-secteurs selon leur vocation (résidentielle, artisanale, etc.).</div>
+    </div>
+
+    <div class="zone-container">
+        <div class="zone-symbol hachures"></div>
+        <div class="zone-description">
+            <strong>1AUB :</strong> Zone à urbaniser avec des restrictions liées aux risques naturels, nécessitant des
+            aménagements spécifiques pour garantir la sécurité avant toute construction.
+        </div>
+
+    </div>
+
+    <div class="zone-container">
+        <div class="zone-symbol hachures"></div>
+
+        <div class="zone-description">
+            <strong>1AUD / 1AUDa :</strong> Zone à urbaniser pour des maisons individuelles ou multifamiliales, suivant
+            les règles de la zone UD/ UDa.
+        </div>
+
+    </div>
+
+    <div class="zone-container">
+        <div class="zone-symbol hachures"></div>
+        <div class="zone-description">
+            <strong>1AUE / 1AUEa / 1AUEb / 1AUEc / 1AUEd / 1AUEr / 1AUE1 / 1AUE2/ 1AUE* :</strong> Zone à urbaniser pour
+            des maisons individuelles ou multifamiliales, suivant les règles de la zone UEa/ UEb / UEc ...etc.
+        </div>
+
+    </div>
+    <div class="zone-container">
+        <div class="zone-symbol hachures"></div>
+
+        <div class="zone-description">
+            <strong>1AUY / 1AUYa :</strong> Secteur à urbaniser avec des caractéristiques similaires au secteur UY/ UYa.
+        </div>
+
+    </div>
+
+
+
+    <h2>Zones Agricoles</h2>
+
+    <div class="zone-container">
+        <div class="zone-symbol" id="A"></div>
+        <div class="zone-description"><strong>A :</strong> Zone réservée à l'agriculture, aux exploitations agricoles,
+            et aux activités liées.</div>
+    </div>
+
+    <h2>Zones Naturelles</h2>
+
+    <div class="zone-container">
+        <div class="zone-symbol" id="N"></div>
+        <div class="zone-description"><strong>N :</strong> Zone naturelle protégée pour sa qualité paysagère,
+            écologique, ou historique.</div>
+        <div></div>
+        <div class="zone-description"><strong>Na :</strong> Secteur réservé à la pratique du golf.</div>
+        <div></div>
+        <div class="zone-description"><strong>Nc :</strong> Secteur d'alpages.</div>
+
+    </div>
+
+    <div class="zone-container">
+        <div class="zone-symbol" id="Nr"></div>
+        <div class="zone-description"><strong>Nr :</strong> Zone affectée par des risques naturels (exemple :
+            avalanches).</div>
+    </div>
+
+
+
+</body>
+
+</html>
