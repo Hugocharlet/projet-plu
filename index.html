@@ -52,7 +52,7 @@
             </div>
 
             <!-- transparency container -->
-            <div id="transparency-container" v-if = "!acceuilOuvert && !menuVisible  ">
+            <div id="transparency-container" v-if = "!acceuilOuvert && (windowWidth > 768 || !menuVisible)">
                 <span class="transparency-label left">Ancien PLU</span>
                 <input type="range" id="transparency-slider" min="0" max="100" v-model="transparencyPercent"
                     @input="updateTransparency" />
