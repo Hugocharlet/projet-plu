@@ -439,3 +439,9 @@ div#zoom>img {
 
 
 }
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  #transparency-container {
+    bottom: 170px; /* ou la valeur que tu veux */
+  }
+}
